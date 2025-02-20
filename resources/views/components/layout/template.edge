@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{{ title || 'STOCK' }}}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0/dist/css/tabler.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0/dist/js/tabler.min.js"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+  </head>
+  <body data-bs-theme="dark">
+    @if($slots.header)
+      {{{ await $slots.header() }}}
+    @endif
+
+    <main>
+      {{{ await $slots.main() }}}
+    </main>
+
+    @if($slots.footer)
+      {{{ await $slots.footer() }}}
+    @endif
+  </body>
+</html>
