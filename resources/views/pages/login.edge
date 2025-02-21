@@ -6,7 +6,10 @@
      <div class="card card-md">
        <div class="card-body">
          <h2 class="h2 text-center mb-4">Se connecter</h2>
-         <form action="#" method="get" autocomplete="off" novalidate="">
+         <form action="{{{ route('login') }}}" method="post" autocomplete="off" novalidate="">
+         @flashMessage('error')
+           @!errorBlock({$message})
+         @end
           <div class="mb-3">
             <label for="email" class="form-label">Adresse e-mail</label>
             <input type="email" name="email" id="email" class="form-control" placeholder="Votre adresse e-mail" autocomplete="off">
@@ -22,7 +25,7 @@
               </span>
             </div>
           </div>
-          <a href="#">Mot de passe oublié</a>
+          <a href="mailto:evan.dynak@bbox.fr">Mot de passe oublié</a>
           <div class="form-footer">
             <button type="submit" class="btn btn-primary w-100">Connexion</button>
           </div>

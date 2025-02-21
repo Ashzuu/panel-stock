@@ -4,4 +4,6 @@ export default class AbsencesController {
   async displayAbsence({ view }: HttpContext) {
     return view.render('pages/absence')
   }
+
+  async displayCreateAbsence({}: HttpContext) {}
 }

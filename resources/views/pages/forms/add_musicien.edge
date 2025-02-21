@@ -1,0 +1,59 @@
+@layout.template({title:'Ajouter un musicien'})
+
+  @slot('header')
+
+    @!header({})
+
+  @endslot
+
+  @slot('main')
+    <form action="#" method="post" class="container-s mt-5">
+      @flashMessage('error')
+        @!errorBlock({})
+      @end
+
+      @!formInput({
+        name:'prenom',
+        label:'Prénom',
+        type:'text',
+        placeholder:'John'
+      })
+      @!formInput({
+        name:'nom',
+        label:'Nom',
+        type:'text',
+        placeholder:'SMITH'
+      })
+      @!formInput({
+        name:'instrument',
+        label:'Instrument',
+        type:'text',
+        placeholder:'Contrebasse'
+      })
+      @!formInput({
+        name:'naissance',
+        label:'Date de naissance',
+        type:'date',
+      })
+
+      <div class="mt-5">
+      @!formInput({
+        name:'dimancheOnly',
+        label:'Répétitions dimanche uniquement',
+        type:'checkbox'
+      })
+
+      @!formInput({
+        name:'renfort',
+        label:'Renfort',
+        type:'checkbox'
+      })
+      </div>
+
+      <button type="submit" class="btn btn-success mt-3">Sauvegarder</button>
+
+    </form>
+
+  @endslot
+
+@end

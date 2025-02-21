@@ -1,0 +1,59 @@
+@layout.template({title:'Ajouter un utilisateur'})
+
+  @slot('header')
+
+    @!header({})
+
+  @endslot
+
+  @slot('main')
+  <h1>Ajouter un utilisateur</h1>
+    <form action="{{{ route('createUser') }}}" method="post" class="container-s">
+      @flashMessage('error')
+        @!errorBlock({})
+      @end
+      @!formInput({
+        name:'nom',
+        label:'Nom Complet',
+        type:'text',
+        placeholder:'John SMITH'
+      })
+
+      @!formInput({
+        name:'email',
+        label:'Email',
+        type:'email',
+        placeholder:'john.smith@exemple.com'
+      })
+
+      @!formInput({
+        name:'password',
+        label:'Mot de passe',
+        type:'password',
+        placeholder:'Votre mot de passe'
+      })
+
+      @!formInput({
+        name:'passwordConfirm',
+        label:'Confirmation de votre mot de passe',
+        type:'password',
+        placeholder:'Répétez votre mot de passe'
+      })
+
+      <div class="mb-3">
+        <label for="role" class="form-label">Rôle</label>
+        <select id="role" name="role" class="form-control form-select">
+          <option value="admin">Administrateur</option>
+          <option value="secretaire">Secrétaire</option>
+          <option value="regisseur">Régisseur</option>
+          <option value="ca">CA</option>
+          <option value="visiteur" selected>Visiteur</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-success">Sauvegarder</button>
+    </form>
+
+  @endslot
+
+@end

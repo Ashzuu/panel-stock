@@ -1,11 +1,50 @@
-@layout.template({title:'Musiciens'})
+@layout.template({title:'Les utilisateurs'})
 
   @slot('header')
     @!header({})
   @endslot
 
   @slot('main')
-    <h1 class="mt-2">Utilisateurs</h1>
+    @!bodyHead({
+      title:'Utilisateurs',
+      searchBar:true,
+      textButton:'Ajouter un utilisateur',
+      myRoute:route('createUserView')
+    })
+
+    @layout.table({})
+      @slot('headers')
+        <th>Nom</th>
+        <th>Email</th>
+        <th>Rôle</th>
+        <th>Date de création</th>
+        <th class="w-1"></th>
+      @endslot
+
+      @slot('lines')
+        @each(user in users)
+        <tr>
+          @!tabCell({
+            text:user.fullName
+          })
+          @!tabCell({
+            text:user.email
+          })
+          @!tabCell({
+            text:user.role
+          })
+          @!tabCell({
+            text:user.createdAt
+          })
+          <td>
+            <a href="#">Editer</a>
+            <a href="#">Supprimer</a>
+          </td>
+        </tr>
+
+        @endeach
+      @endslot
+    @end
   @endslot
 
 @end

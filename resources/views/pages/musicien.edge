@@ -4,9 +4,48 @@
   @endslot
 
   @slot('main')
-    <div class="container-xl">
-      <h1 class="mt-2">Musiciens</h1>
-    </div>
+    <p class="alert mt-4">Pour le moment, la recherche ne fonctionne pas, mais vous pouvez faire <kbd>Ctrl + F</kbd>
+                pour effectuer votre recherche</p>
+      @!bodyHead({
+            title:'Musiciens',
+            searchBar:true,
+            textButton:'Ajouter un musicien',
+            myRoute:route('createMusicienView')
+          })
+
+          @layout.table({})
+            @slot('headers')
+              <th>Nom</th>
+              <th>Instrument</th>
+              <th>Chef de pupitre</th>
+              <th>Dimanche uniquement</th>
+              <th class="w-1"></th>
+            @endslot
+
+            @slot('lines')
+              @each(musicien in musiciens)
+              <tr>
+                @!tabCell({
+                  text:musicien.nom + ' ' + musicien.prenom
+                })
+                @!tabCell({
+                  text:musicien.instrument
+                })
+                @!tabCell({
+                  text:musicien.chef_pupitre
+                })
+                @!tabCell({
+                  text:musicien.dimanche_only
+                })
+                <td>
+                  <a href="#">Editer</a>
+                  <a href="#">Supprimer</a>
+                </td>
+              </tr>
+
+              @endeach
+            @endslot
+          @end
   @endslot
 
 @end

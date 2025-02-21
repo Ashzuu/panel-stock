@@ -1,0 +1,16 @@
+<div class="mb-2">
+  @if(type==='checkbox')
+    <label class="form-check form-switch">
+      <input id="{{{name}}}" name="{{{name}}}" class="form-check-input" type="{{{type}}}">
+      <span class="form-check-label">{{{label}}}</span>
+    </label>
+  @else
+    <label class="form-label" for="{{{ name }}}">{{{ label }}}</label>
+    <input class="form-control" name="{{{ name }}}" id="{{{ name }}}" type="{{{ type }}}" value="{{{ old(name) || ''}}}" placeholder="{{{ placeholder }}}">
+  @endif
+  @inputError(name)
+    @each(message in $messages)
+      <p class="text-red-500">message</p>
+    @endeach
+  @end
+</div>

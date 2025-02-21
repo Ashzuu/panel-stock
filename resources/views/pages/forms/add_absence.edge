@@ -1,0 +1,20 @@
+@layout.template({title:'Ajouter une absence'})
+
+  @slot('header')
+
+    @!header({})
+
+  @endslot
+
+  @slot('main')
+
+    <form action="#" method="post" class="container-s">
+    @flashMessage('error')
+      @!errorBlock({})
+    @end
+
+    </form>
+
+  @endslot
+
+@end

@@ -16,7 +16,9 @@
     @endif
 
     <main>
-      {{{ await $slots.main() }}}
+      <div class="container-xl mt-2">
+        {{{ await $slots.main() }}}
+      </div>
     </main>
 
     @if($slots.footer)
