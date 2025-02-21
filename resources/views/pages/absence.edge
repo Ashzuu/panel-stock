@@ -5,7 +5,47 @@
   @endslot
 
   @slot('main')
-      <h1>Gestion des absences</h1>
+      <p class="alert mt-4">Pour le moment, la recherche ne fonctionne pas, mais vous pouvez faire <kbd>Ctrl + F</kbd>
+                      pour effectuer votre recherche</p>
+    @!bodyHead({
+          title:'Absences',
+          searchBar:true,
+          textButton:'Nouvelle absence',
+          myRoute:route('createAbsenceView')
+        })
+
+    @layout.table({})
+      @slot('headers')
+        <th>Nom</th>
+        <th>Date</th>
+        <th>Raison</th>
+        <th class="w-1"></th>
+      @endslot
+
+      @slot('lines')
+        @each(absence in absences)
+        <tr>
+          @!tabCell({
+            text:'Pas implémenté pour le moment, oups'
+          })
+          @!tabCell({
+            text:absence.date_absence
+          })
+          @!tabCell({
+            text:absence.raison || 'Aucune raison fournie'
+          })
+          <td>
+
+            <a class="btn btn-ghost-primary" href="#">Editer</a>
+            <form action="{{{ route('deleteAbsence', [absence.id]) }}}" method="post">
+              <button class="btn btn-ghost-danger" type="submit">Supprimer</button>
+            </form>
+          </td>
+        </tr>
+
+        @endeach
+      @endslot
+    @end
   @endslot
 
 @end

@@ -1,5 +1,6 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import User from '#models/user'
+import { userValidator } from '#validators/user'
 
 export default class UsersController {
   async displayUser({ view }: HttpContext) {
@@ -12,26 +13,25 @@ export default class UsersController {
   }
 
   async create({ request, response, session }: HttpContext) {
-    const { nom, email, password, passwordConfirm, role } = request.all()
-    if (password === passwordConfirm) {
-      const user = new User()
-      user.fullName = nom
-      user.email = email
-      user.password = password
-      user.role = role
-      try {
-        await user.save()
-        return response.redirect().toRoute('userView')
-      } catch (e) {
-        session.flash('error', e.message)
-        return response.redirect().toRoute('createUserView')
-      }
-    } else {
-      session.flash(
-        'error',
-        'Le mot de passe de confirmation ne correspond pas au mot de passe initial !'
-      )
+    const { nom, email, password, role } = await request.validateUsing(userValidator)
+
+    const user = new User()
+    user.fullName = nom
+    user.email = email
+    user.password = password
+    user.role = role
+    try {
+      await user.save()
+      return response.redirect().toRoute('userView')
+    } catch (e) {
+      session.flash('error', e.message)
       return response.redirect().toRoute('createUserView')
     }
+  }
+
+  async delete({ response, params }: HttpContext) {
+    const user = await User.find(params.id)
+    await user?.delete()
+    return response.redirect().toRoute('userView')
   }
 }

@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@adonisjs/lucid/orm'
+import { BaseModel, beforeSave, column } from '@adonisjs/lucid/orm'
 
 export default class Musicien extends BaseModel {
   @column({ isPrimary: true })
@@ -31,4 +31,10 @@ export default class Musicien extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null
+
+  @beforeSave()
+  static async formatName(musicien: Musicien) {
+    musicien.nom = musicien.nom.toUpperCase()
+    musicien.prenom = musicien.prenom.charAt(0).toUpperCase() + musicien.prenom.slice(1)
+  }
 }

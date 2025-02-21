@@ -38,8 +38,10 @@
                   text:musicien.dimanche_only
                 })
                 <td>
-                  <a href="#">Editer</a>
-                  <a href="#">Supprimer</a>
+                 <a class="btn btn-ghost-primary" href="#">Editer</a>
+                 <form action="{{{ route('deleteMusicien', [musicien.id]) }}}" method="post">
+                   <button class="btn btn-ghost-danger" type="submit">Supprimer</button>
+                 </form>
                 </td>
               </tr>
 

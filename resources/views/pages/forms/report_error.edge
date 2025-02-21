@@ -1,0 +1,35 @@
+@layout.template({title:'Reporter une erreur'})
+
+  @slot('header')
+    @!header({})
+  @endslot
+
+  @slot('main')
+
+    @!bodyHead({
+      title:'Créer un ticket',
+    })
+    <form class="mt-5">
+      @!formInput({
+        name:'subject',
+        label:'Object',
+        placeholder:'Expliquez en mots clés le problème',
+        type:'text'
+      })
+      <div class="mt-3">
+      @!formInput({
+        name:'content',
+        label:'Message',
+        placeholder:'Décrivez le problème rencontré',
+        type:'textarea'
+      })
+      </div>
+
+      <button class="btn mt-3" type="submit">Envoyer</button>
+
+    </form>
+
+
+  @endslot
+
+@end

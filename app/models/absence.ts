@@ -8,5 +8,8 @@ export default class Absence extends BaseModel {
   declare id_musicien: number
 
   @column()
+  declare date_absence: Date
+
+  @column()
   declare raison: string | null
 }

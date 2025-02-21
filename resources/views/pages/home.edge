@@ -7,7 +7,49 @@
   @endslot
 
   @slot('main')
-    <h1>Page d'accueil</h1>
+    @!bodyHead({
+      title:'Déclarer une absence',
+      textButton:'Créer un ticket',
+      myRoute:"mailto:evan.dynak@bbox.fr"
+    })
+    <form action="{{{ route('createAbsence') }}}" method="post" class="container-s mt-5">
+      @flashMessage('error')
+        @!errorBlock({$message})
+      @end
+
+      @flashMessage('success')
+        @!successBlock({
+          message:$message
+        })
+      @end
+
+      @!formInput({
+        name:'prenom',
+        label:'Prénom',
+        type:'text',
+        placeholder:'John'
+      })
+      @!formInput({
+        name:'nom',
+        label:'Nom',
+        type:'text',
+        placeholder:'SMITH'
+      })
+      @!formInput({
+        name:'dateAbsence',
+        label:"Date de l'absence",
+        type:'date',
+      })
+      @!formInput({
+        name:'raison',
+        label:'Raison',
+        type:'text',
+        placeholder:'Optionnel'
+      })
+
+      <button type="submit" class="btn mt-3">Envoyer</button>
+
+    </form>
   @endslot
 
 @end

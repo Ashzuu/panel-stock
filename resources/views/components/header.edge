@@ -17,6 +17,8 @@
           <span class="nav-link-title">Accueil</span>
         </a>
       </li>
+      @eval(await auth.check())
+      @if(await auth.isAuthenticated)
       <li class="nav-item">
         <a class="nav-link" href="{{{ route('musicienView')}}}">
           <span class="nav-link-icon">
@@ -41,6 +43,7 @@
           <span class="nav-link-title">Gestion des absences</span>
         </a>
       </li>
+      @endif
     </ul>
 
     @eval(await auth.check())

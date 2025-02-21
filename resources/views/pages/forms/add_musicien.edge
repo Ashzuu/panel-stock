@@ -9,7 +9,7 @@
   @slot('main')
     <form action="#" method="post" class="container-s mt-5">
       @flashMessage('error')
-        @!errorBlock({})
+        @!errorBlock({$message})
       @end
 
       @!formInput({
